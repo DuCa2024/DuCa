@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anonymous Research Project</title>
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  
+  <!-- 引入 MathJax 来渲染 LaTeX 公式 -->
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+
+</head>
+<body>
+
+<!-- 标题部分 -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title is-1">
+        <span style="font-family: 'Courier New', monospace; font-size: 1.1em;">ToCa</span>: Accelerating Diffusion Transformers with 
+        <span style="text-decoration: underline; font-family: 'Courier New', monospace; font-size: 1.1em;">To</span>ken-wise Feature 
+        <span style="text-decoration: underline; font-family: 'Courier New', monospace; font-size: 1.1em;">Ca</span>ching
+      </h1>
+      <p class="is-size-5">Anonymous</p>
+    </div>
+  </div>
+</section>
+
+<!-- 摘要部分 -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Diffusion transformers have shown significant effectiveness in both image and video synthesis at the expense of huge computation costs. To address this problem, feature caching methods have been introduced to accelerate diffusion transformers by caching the features in previous timesteps and reusing them in the following timesteps. However, previous caching methods ignore that different tokens exhibit different sensitivities to feature caching, and feature caching on some tokens may lead to 10$\times$ more destruction to the overall generation quality compared with other tokens.
+            In this paper, we introduce token-wise feature caching, allowing us to adaptively select the most suitable tokens for caching, and further enable us to apply different caching ratios to neural layers in different types and depths. Extensive experiments on PixArt-$\alpha$, OpenSora, and DiT demonstrate our effectiveness in both image and video generation with no requirements for training. For instance, 2.36$\times$ and 1.93$\times$ acceleration are achieved on OpenSora and PixArt-$\alpha$ with almost no drop in generation quality.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 视频展示部分 -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered">Video Gallery</h2>
+
+      <!-- 翻页控制按钮 -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-narrow">
+          <!-- 左箭头按钮 -->
+          <button class="button custom-page-btn" id="prevPage">
+            <!-- 使用文本箭头符号 ← -->
+            &#8592;
+          </button>
+        </div>
+        <div class="column is-narrow">
+          <!-- 右箭头按钮 -->
+          <button class="button custom-page-btn" id="nextPage">
+            <!-- 使用文本箭头符号 → -->
+            &#8594;
+          </button>
+        </div>
+      </div>
+
+      <!-- 四宫格视频展示 -->
+      <div id="video-grid" class="columns is-multiline">
+        <!-- Videos will be dynamically inserted here by JavaScript -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="footer">
+  <div class="content has-text-centered">
+    <p>ToCa © 2024</p>
+  </div>
+</footer>
+
+<script>
+  const videoPages = [
+    [
+      { title: 'OpenSora', src: "static/videos/examples/sample_0004/original.mp4" },
+      { title: 'ToCa', src: "static/videos/examples/sample_0004/ToCa.mp4" },
+      { title: '50% timesteps', src: "static/videos/examples/sample_0004/15steps.mp4" },
+      { title: 'FORA', src: "static/videos/examples/sample_0004/FORA.mp4" }
+    ],
+    [
+      { title: 'OpenSora', src: "static/videos/examples/sample_0005/original.mp4" },
+      { title: 'ToCa', src: "static/videos/examples/sample_0005/ToCa.mp4" },
+      { title: '50% timesteps', src: "static/videos/examples/sample_0005/15steps.mp4" },
+      { title: 'FORA', src: "static/videos/examples/sample_0005/FORA.mp4" }
+    ],
+    [
+      { title: 'OpenSora', src: "static/videos/examples/sample_0006/original.mp4" },
+      { title: 'ToCa', src: "static/videos/examples/sample_0006/ToCa.mp4" },
+      { title: '50% timesteps', src: "static/videos/examples/sample_0006/15steps.mp4" },
+      { title: 'FORA', src: "static/videos/examples/sample_0006/FORA.mp4" }
+    ],
+    [
+      { title: 'OpenSora', src: "static/videos/examples/sample_0007/original.mp4" },
+      { title: 'ToCa', src: "static/videos/examples/sample_0007/ToCa.mp4" },
+      { title: '50% timesteps', src: "static/videos/examples/sample_0007/15steps.mp4" },
+      { title: 'FORA', src: "static/videos/examples/sample_0007/FORA.mp4" }
+    ],
+    [
+      { title: 'OpenSora',      src: "static/videos/examples/a purple bird-3/Sora-original.mp4" },
+      { title: 'ToCa',          src: "static/videos/examples/a purple bird-3/Sora-TokenCache.mp4" },
+      { title: '50% timesteps', src: "static/videos/examples/a purple bird-3/Sora-15steps.mp4" },
+      { title: 'FORA',          src: "static/videos/examples/a purple bird-3/Sora-FORA2.mp4" }
+    ],
+    [
+      { title: 'OpenSora',      src: "static/videos/examples/A raccoon dressed in suit playing the trumpet, stage background-1/Sora-original.mp4" },
+      { title: 'ToCa',          src: "static/videos/examples/A raccoon dressed in suit playing the trumpet, stage background-1/Sora-TokenCache.mp4" },
+      { title: '50% timesteps', src: "static/videos/examples/A raccoon dressed in suit playing the trumpet, stage background-1/Sora-15steps.mp4" },
+      { title: 'FORA',          src: "static/videos/examples/A raccoon dressed in suit playing the trumpet, stage background-1/Sora-FORA2.mp4" }
+    ],
+    [
+      { title: 'OpenSora',      src: "static/videos/examples/An Iron man is playing the electronic guitar, high electronic guitar.-3/Sora-original.mp4" },
+      { title: 'ToCa',          src: "static/videos/examples/An Iron man is playing the electronic guitar, high electronic guitar.-3/Sora-TokenCache.mp4" },
+      { title: '50% timesteps', src: "static/videos/examples/An Iron man is playing the electronic guitar, high electronic guitar.-3/Sora-15steps.mp4" },
+      { title: 'FORA',          src: "static/videos/examples/An Iron man is playing the electronic guitar, high electronic guitar.-3/Sora-FORA2.mp4" }
+    ],
+    [
+      { title: 'OpenSora',      src: "static/videos/examples/A boat sailing leisurely along the Seine River with the Eiffel Tower in background by Vincent van Gogh-3/Sora-original.mp4" },
+      { title: 'ToCa',          src: "static/videos/examples/A boat sailing leisurely along the Seine River with the Eiffel Tower in background by Vincent van Gogh-3/Sora-TokenCache.mp4" },
+      { title: '50% timesteps', src: "static/videos/examples/A boat sailing leisurely along the Seine River with the Eiffel Tower in background by Vincent van Gogh-3/Sora-15steps.mp4" },
+      { title: 'FORA',          src: "static/videos/examples/A boat sailing leisurely along the Seine River with the Eiffel Tower in background by Vincent van Gogh-3/Sora-FORA2.mp4" }
+    ],
+    [
+      { title: 'OpenSora',      src: "static/videos/examples/A beautiful coastal beach in spring, waves lapping on sand, Van Gogh style-3/Sora-original.mp4" },
+      { title: 'ToCa',          src: "static/videos/examples/A beautiful coastal beach in spring, waves lapping on sand, Van Gogh style-3/Sora-TokenCache.mp4" },
+      { title: '50% timesteps', src: "static/videos/examples/A beautiful coastal beach in spring, waves lapping on sand, Van Gogh style-3/Sora-15steps.mp4" },
+      { title: 'FORA',          src: "static/videos/examples/A beautiful coastal beach in spring, waves lapping on sand, Van Gogh style-3/Sora-FORA2.mp4" }
+    ],
+    [
+      { title: 'OpenSora',      src: "static/videos/examples/A boat sailing leisurely along the Seine River with the Eiffel Tower in background, oil painting-1/Sora-original.mp4" },
+      { title: 'ToCa',          src: "static/videos/examples/A boat sailing leisurely along the Seine River with the Eiffel Tower in background, oil painting-1/Sora-TokenCache.mp4" },
+      { title: '50% timesteps', src: "static/videos/examples/A boat sailing leisurely along the Seine River with the Eiffel Tower in background, oil painting-1/Sora-15steps.mp4" },
+      { title: 'FORA',          src: "static/videos/examples/A boat sailing leisurely along the Seine River with the Eiffel Tower in background, oil painting-1/Sora-FORA2.mp4" }
+    ],
+    [
+      { title: 'OpenSora',      src: "static/videos/examples/A beautiful coastal beach in spring, waves lapping on sand, animated style-4/Sora-original.mp4" },
+      { title: 'ToCa',          src: "static/videos/examples/A beautiful coastal beach in spring, waves lapping on sand, animated style-4/Sora-TokenCache.mp4" },
+      { title: '50% timesteps', src: "static/videos/examples/A beautiful coastal beach in spring, waves lapping on sand, animated style-4/Sora-15steps.mp4" },
+      { title: 'FORA',          src: "static/videos/examples/A beautiful coastal beach in spring, waves lapping on sand, animated style-4/Sora-FORA2.mp4" }
+    ],
+    [
+      { title: 'OpenSora', src: "static/videos/examples/sample_0003/original.mp4" },
+      { title: 'ToCa', src: "static/videos/examples/sample_0003/ToCa.mp4" },
+      { title: '50% timesteps', src: "static/videos/examples/sample_0003/15steps.mp4" },
+      { title: 'FORA', src: "static/videos/examples/sample_0003/FORA.mp4" }
+    ],
+  ];
+
+  let currentPage = 1;
+  const totalPages = videoPages.length;
+
+  // 加载视频页面
+  function loadVideoPage(page) {
+    const videoGrid = document.getElementById('video-grid');
+    videoGrid.innerHTML = ''; // 清空现有的视频
+
+const videos = videoPages[page - 1].map(video => {
+  let videoTitle = '';
+  
+  switch (video.title) {
+    case 'ToCa':
+      videoTitle = `<strong style="font-family: 'Courier New', monospace; font-weight: bold;">ToCa</strong> (Ours) x 2.4`;
+      break;
+    case '50% timesteps':
+      videoTitle = '50% timesteps x 2.0';
+      break;
+    case 'FORA':
+      videoTitle = 'FORA x 1.9';
+      break;
+    default:
+      videoTitle = video.title;
+  }
+
+  return `
+    <div class="column is-half">
+      <h3 class="subtitle has-text-centered">${videoTitle}</h3>
+      <video controls muted width="100%" autoplay>
+        <source src="${video.src}" type="video/mp4">
+      </video>
+    </div>
+  `;
+}).join('');
+
+    videoGrid.innerHTML = videos;
+
+    // 监听所有视频播放完毕的事件
+    const videoElements = Array.from(videoGrid.querySelectorAll('video'));
+    Promise.all(videoElements.map(video => {
+      return new Promise(resolve => {
+        video.onended = resolve;
+      });
+    })).then(() => {
+      // 所有视频播放完毕，自动翻页
+      if (currentPage < totalPages) {
+        currentPage++;
+      } else {
+        currentPage = 1; // 循环回到第一页
+      }
+      loadVideoPage(currentPage);
+    });
+
+    // 更新按钮的禁用状态
+    document.getElementById('prevPage').disabled = page === 1;
+    document.getElementById('nextPage').disabled = page === totalPages;
+  }
+
+  // 点击“上一页”按钮
+  document.getElementById('prevPage').addEventListener('click', function () {
+    if (currentPage > 1) {
+      currentPage--;
+      loadVideoPage(currentPage);
+    }
+  });
+
+  // 点击“下一页”按钮
+  document.getElementById('nextPage').addEventListener('click', function () {
+    if (currentPage < totalPages) {
+      currentPage++;
+      loadVideoPage(currentPage);
+    }
+  });
+
+  // 初始化加载第一页视频
+  loadVideoPage(currentPage);
+
+  // 强制MathJax重新渲染公式
+  document.addEventListener('DOMContentLoaded', () => {
+    MathJax.typesetPromise();
+  });
+</script>
+
+</body>
+</html>
