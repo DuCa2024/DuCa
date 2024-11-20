@@ -29,8 +29,8 @@
   <div class="hero-body">
     <div class="container has-text-centered">
       <h1 class="title is-1">
-        <span style="font-family: 'Courier New', monospace; font-size: 1.1em;">ToCa</span>: Accelerating Diffusion Transformers with 
-        <span style="text-decoration: underline; font-family: 'Courier New', monospace; font-size: 1.1em;">To</span>ken-wise Feature 
+        <span style="font-family: 'Courier New', monospace; font-size: 1.1em;">DuCa</span>: Accelerating Diffusion Transformers with 
+        <span style="text-decoration: underline; font-family: 'Courier New', monospace; font-size: 1.1em;">Du</span>al Feature 
         <span style="text-decoration: underline; font-family: 'Courier New', monospace; font-size: 1.1em;">Ca</span>ching
       </h1>
       <p class="is-size-5">Anonymous</p>
@@ -46,8 +46,8 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Diffusion transformers have shown significant effectiveness in both image and video synthesis at the expense of huge computation costs. To address this problem, feature caching methods have been introduced to accelerate diffusion transformers by caching the features in previous timesteps and reusing them in the following timesteps. However, previous caching methods ignore that different tokens exhibit different sensitivities to feature caching, and feature caching on some tokens may lead to 10$\times$ more destruction to the overall generation quality compared with other tokens.
-            In this paper, we introduce token-wise feature caching, allowing us to adaptively select the most suitable tokens for caching, and further enable us to apply different caching ratios to neural layers in different types and depths. Extensive experiments on PixArt-$\alpha$, OpenSora, and DiT demonstrate our effectiveness in both image and video generation with no requirements for training. For instance, 2.36$\times$ and 1.93$\times$ acceleration are achieved on OpenSora and PixArt-$\alpha$ with almost no drop in generation quality.
+            Diffusion Transformers (DiT) have become the dominant methods in image and video generation yet still suffer substantial computational costs. However, on the one hand, aggressively reusing all the features cached in previous timesteps leads to a severe drop in generation quality. On the other hand, conservatively caching only the features in the redundant layers or tokens but still computing the important ones successfully preserves the generation quality but results in reductions in acceleration ratios. Observing such a tradeoff between generation quality and acceleration performance, this paper begins by quantitatively studying the accumulated error from cached features.  Surprisingly, we find that aggressive caching does not introduce significantly more caching errors in the caching step, and the conservative feature caching can fix the error introduced by aggressive caching.
+            Thereby, we propose a dual caching strategy that adopts aggressive and conservative caching iteratively, leading to significant acceleration and high generation quality at the same time. Besides, we further introduce a V-caching strategy for token-wise conservative caching, which is compatible with flash attention and requires no training and calibration data.
           </p>
         </div>
       </div>
@@ -183,7 +183,7 @@ const videos = videoPages[page - 1].map(video => {
   
   switch (video.title) {
     case 'ToCa':
-      videoTitle = `<strong style="font-family: 'Courier New', monospace; font-weight: bold;">ToCa</strong> (Ours) x 2.4`;
+      videoTitle = `<strong style="font-family: 'Courier New', monospace; font-weight: bold;">ToCa</strong> (Ours) x 2.5`;
       break;
     case '50% timesteps':
       videoTitle = '50% timesteps x 2.0';
