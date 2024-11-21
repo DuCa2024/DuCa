@@ -97,74 +97,68 @@
 <script>
   const videoPages = [
     [
-      { title: 'OpenSora', src: "static/videos/examples/sample_0004/original.mp4" },
-      { title: 'ToCa', src: "static/videos/examples/sample_0004/ToCa.mp4" },
-      { title: '50% timesteps', src: "static/videos/examples/sample_0004/15steps.mp4" },
-      { title: 'FORA', src: "static/videos/examples/sample_0004/FORA.mp4" }
+      { title: 'OpenSora', src: "static/videos/DuCa-videos/A 3D model of a 1800s victorian house.-0/original (1).mp4" },
+      { title: 'DuCa', src: "static/videos/DuCa-videos/A 3D model of a 1800s victorian house.-0/duca (1).mp4" },
+      { title: '50% timesteps', src: "static/videos/DuCa-videos/A 3D model of a 1800s victorian house.-0/steps (1).mp4" },
+      { title: 'FORA', src: "static/videos/DuCa-videos/A 3D model of a 1800s victorian house.-0/fora (1).mp4" }
     ],
     [
-      { title: 'OpenSora', src: "static/videos/examples/sample_0005/original.mp4" },
-      { title: 'ToCa', src: "static/videos/examples/sample_0005/ToCa.mp4" },
-      { title: '50% timesteps', src: "static/videos/examples/sample_0005/15steps.mp4" },
-      { title: 'FORA', src: "static/videos/examples/sample_0005/FORA.mp4" }
+      { title: 'OpenSora', src: "static/videos/DuCa-videos/A boat sailing leisurely along the Seine River with the Eiffel Tower in background, pan right-1/original (452).mp4" },
+      { title: 'DuCa', src: "static/videos/DuCa-videos/A boat sailing leisurely along the Seine River with the Eiffel Tower in background, pan right-1/duca (452).mp4" },
+      { title: '50% timesteps', src: "static/videos/DuCa-videos/A boat sailing leisurely along the Seine River with the Eiffel Tower in background, pan right-1/steps (452).mp4" },
+      { title: 'FORA', src: "static/videos/DuCa-videos/A boat sailing leisurely along the Seine River with the Eiffel Tower in background, pan right-1/fora (452).mp4" }
     ],
     [
-      { title: 'OpenSora', src: "static/videos/examples/sample_0006/original.mp4" },
-      { title: 'ToCa', src: "static/videos/examples/sample_0006/ToCa.mp4" },
-      { title: '50% timesteps', src: "static/videos/examples/sample_0006/15steps.mp4" },
-      { title: 'FORA', src: "static/videos/examples/sample_0006/FORA.mp4" }
+      { title: 'OpenSora', src: "static/videos/DuCa-videos/A jellyfish floating through the ocean, with bioluminescent tentacles-1/original (1342).mp4" },
+      { title: 'DuCa', src: "static/videos/DuCa-videos/A jellyfish floating through the ocean, with bioluminescent tentacles-1/duca (1342).mp4" },
+      { title: '50% timesteps', src: "static/videos/DuCa-videos/A jellyfish floating through the ocean, with bioluminescent tentacles-1/steps (1342).mp4" },
+      { title: 'FORA', src: "static/videos/DuCa-videos/A jellyfish floating through the ocean, with bioluminescent tentacles-1/fora (1342).mp4" }
     ],
     [
-      { title: 'OpenSora', src: "static/videos/examples/sample_0007/original.mp4" },
-      { title: 'ToCa', src: "static/videos/examples/sample_0007/ToCa.mp4" },
-      { title: '50% timesteps', src: "static/videos/examples/sample_0007/15steps.mp4" },
-      { title: 'FORA', src: "static/videos/examples/sample_0007/FORA.mp4" }
+      { title: 'OpenSora', src: "static/videos/DuCa-videos/A super cool giant robot in Cyberpunk Beijing-4/original (2690).mp4" },
+      { title: 'DuCa', src: "static/videos/DuCa-videos/A super cool giant robot in Cyberpunk Beijing-4/duca (2690).mp44" },
+      { title: '50% timesteps', src: "static/videos/DuCa-videos/A super cool giant robot in Cyberpunk Beijing-4/steps (2690).mp4" },
+      { title: 'FORA', src: "static/videos/DuCa-videos/A super cool giant robot in Cyberpunk Beijing-4/fora (2690).mp4" }
     ],
     [
-      { title: 'OpenSora',      src: "static/videos/examples/a purple bird-3/Sora-original.mp4" },
-      { title: 'ToCa',          src: "static/videos/examples/a purple bird-3/Sora-TokenCache.mp4" },
-      { title: '50% timesteps', src: "static/videos/examples/a purple bird-3/Sora-15steps.mp4" },
-      { title: 'FORA',          src: "static/videos/examples/a purple bird-3/Sora-FORA2.mp4" }
+      { title: 'OpenSora',      src: "static/videos/DuCa-videos/A tranquil tableau of a chair-0/original (2906).mp4" },
+      { title: 'DuCa',          src: "static/videos/DuCa-videos/A tranquil tableau of a chair-0/duca (2906).mp4" },
+      { title: '50% timesteps', src: "static/videos/DuCa-videos/A tranquil tableau of a chair-0/steps (2906).mp4" },
+      { title: 'FORA',          src: "static/videos/DuCa-videos/A tranquil tableau of a chair-0/fora (2906).mp4" }
     ],
     [
-      { title: 'OpenSora',      src: "static/videos/examples/A raccoon dressed in suit playing the trumpet, stage background-1/Sora-original.mp4" },
-      { title: 'ToCa',          src: "static/videos/examples/A raccoon dressed in suit playing the trumpet, stage background-1/Sora-TokenCache.mp4" },
-      { title: '50% timesteps', src: "static/videos/examples/A raccoon dressed in suit playing the trumpet, stage background-1/Sora-15steps.mp4" },
-      { title: 'FORA',          src: "static/videos/examples/A raccoon dressed in suit playing the trumpet, stage background-1/Sora-FORA2.mp4" }
+      { title: 'OpenSora',      src: "static/videos/DuCa-videos/a giraffe on the right of a bird, front view-4/original (1195).mp4" },
+      { title: 'DuCa',          src: "static/videos/DuCa-videos/a giraffe on the right of a bird, front view-4/duca (1195).mp4" },
+      { title: '50% timesteps', src: "static/videos/DuCa-videos/a giraffe on the right of a bird, front view-4/steps (1195).mp4" },
+      { title: 'FORA',          src: "static/videos/DuCa-videos/a giraffe on the right of a bird, front view-4/fora (1195).mp4" }
     ],
     [
-      { title: 'OpenSora',      src: "static/videos/examples/An Iron man is playing the electronic guitar, high electronic guitar.-3/Sora-original.mp4" },
-      { title: 'ToCa',          src: "static/videos/examples/An Iron man is playing the electronic guitar, high electronic guitar.-3/Sora-TokenCache.mp4" },
-      { title: '50% timesteps', src: "static/videos/examples/An Iron man is playing the electronic guitar, high electronic guitar.-3/Sora-15steps.mp4" },
-      { title: 'FORA',          src: "static/videos/examples/An Iron man is playing the electronic guitar, high electronic guitar.-3/Sora-FORA2.mp4" }
+      { title: 'OpenSora',      src: "static/videos/DuCa-videos/a horse-4/original (1320).mp4" },
+      { title: 'DuCa',          src: "static/videos/DuCa-videos/a horse-4/duca (1320).mp4" },
+      { title: '50% timesteps', src: "static/videos/DuCa-videos/a horse-4/steps (1320).mp4" },
+      { title: 'FORA',          src: "static/videos/DuCa-videos/a horse-4/fora (1320).mp4" }
     ],
     [
-      { title: 'OpenSora',      src: "static/videos/examples/A boat sailing leisurely along the Seine River with the Eiffel Tower in background by Vincent van Gogh-3/Sora-original.mp4" },
-      { title: 'ToCa',          src: "static/videos/examples/A boat sailing leisurely along the Seine River with the Eiffel Tower in background by Vincent van Gogh-3/Sora-TokenCache.mp4" },
-      { title: '50% timesteps', src: "static/videos/examples/A boat sailing leisurely along the Seine River with the Eiffel Tower in background by Vincent van Gogh-3/Sora-15steps.mp4" },
-      { title: 'FORA',          src: "static/videos/examples/A boat sailing leisurely along the Seine River with the Eiffel Tower in background by Vincent van Gogh-3/Sora-FORA2.mp4" }
+      { title: 'OpenSora',      src: "static/videos/DuCa-videos/a motorcycle cruising along a coastal highway-1/original (1462).mp4" },
+      { title: 'DuCa',          src: "static/videos/DuCa-videos/a motorcycle cruising along a coastal highway-1/duca (1462).mp4" },
+      { title: '50% timesteps', src: "static/videos/DuCa-videos/a motorcycle cruising along a coastal highway-1/steps (1462).mp4" },
+      { title: 'FORA',          src: "static/videos/DuCa-videos/a motorcycle cruising along a coastal highway-1/fora (1462).mp4" }
     ],
     [
-      { title: 'OpenSora',      src: "static/videos/examples/A beautiful coastal beach in spring, waves lapping on sand, Van Gogh style-3/Sora-original.mp4" },
-      { title: 'ToCa',          src: "static/videos/examples/A beautiful coastal beach in spring, waves lapping on sand, Van Gogh style-3/Sora-TokenCache.mp4" },
-      { title: '50% timesteps', src: "static/videos/examples/A beautiful coastal beach in spring, waves lapping on sand, Van Gogh style-3/Sora-15steps.mp4" },
-      { title: 'FORA',          src: "static/videos/examples/A beautiful coastal beach in spring, waves lapping on sand, Van Gogh style-3/Sora-FORA2.mp4" }
+      { title: 'OpenSora',      src: "static/videos/DuCa-videos/a pizza-1/original (2241).mp4" },
+      { title: 'DuCa',          src: "static/videos/DuCa-videos/a pizza-1/duca (2241).mp4" },
+      { title: '50% timesteps', src: "static/videos/DuCa-videos/a pizza-1/steps (2241).mp4" },
+      { title: 'FORA',          src: "static/videos/DuCa-videos/a pizza-1/fora (2241).mp4" }
     ],
     [
-      { title: 'OpenSora',      src: "static/videos/examples/A boat sailing leisurely along the Seine River with the Eiffel Tower in background, oil painting-1/Sora-original.mp4" },
-      { title: 'ToCa',          src: "static/videos/examples/A boat sailing leisurely along the Seine River with the Eiffel Tower in background, oil painting-1/Sora-TokenCache.mp4" },
-      { title: '50% timesteps', src: "static/videos/examples/A boat sailing leisurely along the Seine River with the Eiffel Tower in background, oil painting-1/Sora-15steps.mp4" },
-      { title: 'FORA',          src: "static/videos/examples/A boat sailing leisurely along the Seine River with the Eiffel Tower in background, oil painting-1/Sora-FORA2.mp4" }
-    ],
-    [
-      { title: 'OpenSora',      src: "static/videos/examples/A beautiful coastal beach in spring, waves lapping on sand, animated style-4/Sora-original.mp4" },
-      { title: 'ToCa',          src: "static/videos/examples/A beautiful coastal beach in spring, waves lapping on sand, animated style-4/Sora-TokenCache.mp4" },
-      { title: '50% timesteps', src: "static/videos/examples/A beautiful coastal beach in spring, waves lapping on sand, animated style-4/Sora-15steps.mp4" },
-      { title: 'FORA',          src: "static/videos/examples/A beautiful coastal beach in spring, waves lapping on sand, animated style-4/Sora-FORA2.mp4" }
+      { title: 'OpenSora',      src: "static/videos/DuCa-videos/a sheep-4/original (2555).mp4" },
+      { title: 'DuCa',          src: "static/videos/DuCa-videos/a sheep-4/duca (2555).mp4" },
+      { title: '50% timesteps', src: "static/videos/DuCa-videos/a sheep-4/steps (2555).mp4" },
+      { title: 'FORA',          src: "static/videos/DuCa-videos/a sheep-4/fora (2555).mp4" }
     ],
     [
       { title: 'OpenSora', src: "static/videos/examples/sample_0003/original.mp4" },
-      { title: 'ToCa', src: "static/videos/examples/sample_0003/ToCa.mp4" },
+      { title: 'DuCa', src: "static/videos/examples/sample_0003/ToCa.mp4" },
       { title: '50% timesteps', src: "static/videos/examples/sample_0003/15steps.mp4" },
       { title: 'FORA', src: "static/videos/examples/sample_0003/FORA.mp4" }
     ],
@@ -182,8 +176,8 @@ const videos = videoPages[page - 1].map(video => {
   let videoTitle = '';
   
   switch (video.title) {
-    case 'ToCa':
-      videoTitle = `<strong style="font-family: 'Courier New', monospace; font-weight: bold;">ToCa</strong> (Ours) x 2.5`;
+    case 'DuCa':
+      videoTitle = `<strong style="font-family: 'Courier New', monospace; font-weight: bold;">DuCa</strong> (Ours) x 2.5`;
       break;
     case '50% timesteps':
       videoTitle = '50% timesteps x 2.0';
